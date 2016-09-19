@@ -1,0 +1,11 @@
+title: "> root@saelo"
+description: >
+  (Mostly) technical notes of a german hacker and university student...
+baseurl: ""
+url: "https://saelo.github.io"
+twitter_username: 5aelo
+github_username:  saelo
+
+# Build settings
+markdown: kramdown
+permalink: /:categories/:title.html

@@ -1,0 +1,42 @@
+---
+layout: default
+---
+
+<div class="home">
+
+  <section>
+    <h2 class="smallcap"># cat /about</h2>
+    <p>{{ site.description | escape }}</p>
+  </section>
+
+  <section>
+    <h2 class="smallcap"># ls -l /posts</h2>
+    <ul class="post-list">
+      {% for post in site.posts %}
+      <li>
+        <span> -rw-r--r--  1 saelo wheel    {{ post.content | size | rjust 5}} {{ post.date | date_to_string }} <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a><span>
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
+
+  <section>
+    <h2 class="smallcap"># cat /contact | cowsay</h2>
+    <p>
+    &nbsp;_______________________________<br/>
+    &lt; Find me on <a href="https://twitter.com/{{ site.twitter_username }}">twitter</a> or <a href="https://github.com/{{ site.github_username }}">github</a>. &gt;<br />
+    &nbsp;-------------------------------<br />
+    &nbsp;&nbsp;&nbsp;&nbsp;\&nbsp;&nbsp;&nbsp;^__^<br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\&nbsp;&nbsp;(oo)\_______<br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(__)\&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)\/\<br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||----w&nbsp;|<br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||<br />
+   </p>
+  </section>
+
+  <section>
+    <h2 class="smallcap"># echo "subscribe via $RSS"</h2>
+    <p class="rss-subscribe">subscribe via <a href="{{ "/feed.xml" | prepend: site.baseurl }}">RSS</a></p>
+  </section>
+
+</div>
