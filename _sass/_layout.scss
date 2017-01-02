@@ -24,6 +24,18 @@
     }
 }
 
+.social-media-list {
+    list-style: none;
+    margin-bottom: 0;
+    line-height: 56px;
+    float: right;
+
+    li {
+        display: inline;
+        margin: 0px 14px;
+    }
+}
+
 
 /**
  * Site footer
@@ -53,6 +65,11 @@
 .post-list {
     margin-left: 0;
     list-style: none;
+
+    li {
+        border-bottom: 1px solid $grey-color-dark;
+        padding: $spacing-unit 0px;
+    }
 }
 
 .post-meta {

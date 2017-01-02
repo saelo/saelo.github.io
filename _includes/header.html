@@ -4,6 +4,16 @@
 
     <a class="site-title" href="{{ site.baseurl }}/">{{ site.title }}</a>
 
+    <ul class="social-media-list">
+      <li>
+        {% include icon-github.html username=site.github_username %}
+      </li>
+
+      <li>
+        {% include icon-twitter.html username=site.twitter_username %}
+      </li>
+    </ul>
+
   </div>
 
 </header>
