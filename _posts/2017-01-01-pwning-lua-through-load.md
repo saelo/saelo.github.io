@@ -31,7 +31,7 @@ Our plan will be to abuse the out-of-bounds indexing in the LOADK handler to inj
 
 Note that this approach has one drawback though: it relies on the heap layout since it indexes behind the heap chunk that holds the constants. This is a source of unreliability. It may be possible to avoid this by scanning (in the bytecode) for a particular value (e.g. a certain integer value) which marks the start of the fake values, but this is left as an exercise for the reader... ;)
 
-At this point there is a very simple exploit in certain scenarios: assuming the Lua interpreter was modified such that e.g. `os.execute` was present in the binary but not available to Lua code (which happens if one just comments out [this][disable-os.execute] line in the source code), then we can simply create a fake function value that points to the native implementation and call it with whatever shell command we want to execute. We can get the address of the interpreter code itself (assuming a shared object or PIE) through `tostring(load)`:
+At this point there is a very simple exploit in certain scenarios: assuming the Lua interpreter was modified such that e.g. `os.execute` was present in the binary but not available to Lua code (which happens if one just comments out [this][disable-os.execute] line in the source code), then we can simply create a fake function value that points to the native implementation and call it with whatever shell command we want to execute. If required, we can obtain the address of the interpreter code itself through `tostring(load)` (or any other native function for that matter):
 
 {% highlight Lua %}
 > print(tostring(load))
@@ -42,7 +42,7 @@ So what if we removed those functions entirely, and, to make it more interesting
 
 Let's start with an arbitrary read/write primitive:
 
-1. We'll create a fake string object with it's length set to 0x7fffffffffffffff, allowing us to leak memory behind the string object itself (unfortunately, Lua treats the index into the string as unsigned long, so reading before the string isn't possible, but also not necessary)
+1. We'll create a fake string object with its length set to 0x7fffffffffffffff, allowing us to leak memory behind the string object itself (unfortunately, Lua treats the index into the string as unsigned long, so reading before the string isn't possible, but also not necessary)
 
 2. Since strings are immutable, we'll also set up a fake table object (a combination of dict and list if you're familiar with python), allowing us to write Lua values to anywhere in memory by setting the [array][table_array] pointer to the desired address
 
