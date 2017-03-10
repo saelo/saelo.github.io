@@ -8,4 +8,4 @@ github_username:  saelo
 
 # Build settings
 markdown: kramdown
-permalink: /:categories/:title.html
+permalink: /posts/:title.html
