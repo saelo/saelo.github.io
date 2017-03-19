@@ -275,7 +275,7 @@ GCPtrShape shape_;
 HeapSlots* slots_;
 HeapSlots* elements_;
 
-// Slot offsets from TODO
+// Slot offsets from ArrayBufferObject
 static const uint8_t DATA_SLOT = 0;
 static const uint8_t BYTE_LENGTH_SLOT = 1;
 static const uint8_t FIRST_VIEW_SLOT = 2;
